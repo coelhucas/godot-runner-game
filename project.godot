@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dinosaur"
-run/main_scene="res://src/Scenes/Game/Game.tscn"
+run/main_scene="res://src/Scenes/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
