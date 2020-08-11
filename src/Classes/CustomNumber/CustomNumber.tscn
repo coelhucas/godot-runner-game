@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Classes/CustomNumber/CustomNumber.gd" type="Script" id=1]
+[ext_resource path="res://src/Classes/CustomNumber/Number.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Node2D"]
+script = ExtResource( 1 )
+number_scene = ExtResource( 2 )
+number = "0"
+spacing = 22

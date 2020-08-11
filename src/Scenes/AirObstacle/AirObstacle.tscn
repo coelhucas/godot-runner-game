@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Classes/LeftMovingObject/LeftMovingObject.gd" type="Script" id=1]
-[ext_resource path="res://assets/cactus.png" type="Texture" id=2]
+[ext_resource path="res://assets/egg.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -32,10 +32,9 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 4, -6 )
+position = Vector2( -3, 0 )
 texture = ExtResource( 2 )
 hframes = 3
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
