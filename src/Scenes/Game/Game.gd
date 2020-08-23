@@ -6,9 +6,13 @@ enum Spawn {
 }
 
 onready var ground_obstacle: PackedScene = preload("res://src/Scenes/GroundObstacle/GroundObstacle.tscn")
+onready var air_obstacle: PackedScene = preload("res://src/Scenes/AirObstacle/AirObstacle.tscn")
 
 const ZERO_PADS: int = 5
 const INITIAL_GAME_SPEED: int = 200
+const INITIAL_SPAWN_TIMER: float = 2.0
+const INITIAL_DIFFICULT_TIMER: float = 3.0
+const INITIAL_SCORE_TIMER: float = 0.5
 const OBSTACLE_GROUP: String = "obstacle"
 
 var high_score: int
@@ -26,7 +30,7 @@ func spawn_obstacle() -> void:
 		new_obstacle = ground_obstacle.instance()
 	else:
 		spawn_point = $World/SpawnPoints/Air
-		new_obstacle = ground_obstacle.instance()
+		new_obstacle = air_obstacle.instance()
 	
 	new_obstacle.global_position = spawn_point.global_position
 	new_obstacle.speed = game_speed
@@ -40,9 +44,13 @@ func reset_game() -> void:
 	game_speed = INITIAL_GAME_SPEED
 	if score > high_score:
 		high_score = score
-		$"UI/HI-Score".text = "BEST: " + str(high_score).pad_zeros(ZERO_PADS)
+		$"UI/HI-Score".number = str(high_score).pad_zeros(ZERO_PADS)
 	
-	$UI/Score.text = "0".pad_zeros(ZERO_PADS)
+	$SpawnTimer.wait_time = INITIAL_SPAWN_TIMER
+	$DifficultTimer.wait_time = INITIAL_DIFFICULT_TIMER
+	$ScoreTimer.wait_time = INITIAL_SCORE_TIMER
+	score = 0
+	$UI/Score.number = "0".pad_zeros(ZERO_PADS)
 
 
 func _on_SpawnTimer_timeout() -> void:
@@ -50,7 +58,7 @@ func _on_SpawnTimer_timeout() -> void:
 
 func _on_ScoreTimer_timeout() -> void:
 	score += 1
-	$UI/Score.text = str(score).pad_zeros(ZERO_PADS)
+	$UI/Score.number = str(score).pad_zeros(ZERO_PADS)
 
 
 func _on_DifficultTimer_timeout():
