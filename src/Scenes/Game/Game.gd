@@ -10,6 +10,9 @@ onready var air_obstacle: PackedScene = preload("res://src/Scenes/AirObstacle/Ai
 
 const ZERO_PADS: int = 5
 const INITIAL_GAME_SPEED: int = 200
+const INITIAL_SPAWN_TIMER: float = 2.0
+const INITIAL_DIFFICULT_TIMER: float = 3.0
+const INITIAL_SCORE_TIMER: float = 0.5
 const OBSTACLE_GROUP: String = "obstacle"
 
 var high_score: int
@@ -43,6 +46,9 @@ func reset_game() -> void:
 		high_score = score
 		$"UI/HI-Score".number = str(high_score).pad_zeros(ZERO_PADS)
 	
+	$SpawnTimer.wait_time = INITIAL_SPAWN_TIMER
+	$DifficultTimer.wait_time = INITIAL_DIFFICULT_TIMER
+	$ScoreTimer.wait_time = INITIAL_SCORE_TIMER
 	score = 0
 	$UI/Score.number = "0".pad_zeros(ZERO_PADS)
 

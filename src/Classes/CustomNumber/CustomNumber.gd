@@ -1,4 +1,3 @@
-tool
 extends Node2D
 
 export(PackedScene) var number_scene: PackedScene
@@ -15,12 +14,12 @@ func _process(delta) -> void:
 			
 		for digit in str(number):
 			var fixed_digit: int = int(digit)
-			print(digit)
 			var digit_node: Sprite = number_scene.instance()
 			add_child(digit_node)
 			digit_node.global_position = global_position
 			digit_node.global_position.x += accumulator * spacing
-			digit_node.frame = int(digit)
+			digit_node.get_node("AnimationPlayer").play(digit)
+			print("Digit %s" % digit)
 			accumulator += 1
-		current_value = current_value
+		number = current_value
 	pass
